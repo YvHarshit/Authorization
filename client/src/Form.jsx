@@ -4,7 +4,7 @@ function Form() {
   return (
     <div>
         
-        <form  className='m-[30px] p-[30px] flex flex-col w-[300px] h-[450px] bg-green-300 gap-[20px]' onSubmit={}>
+        <form  className='m-[30px] p-[30px] flex flex-col w-[300px] h-[450px] bg-green-300 gap-[20px]'>
             
  
         <label>Name : </label> <input className="p-[8px] border border-solid rounded-sm"  type="text" placeholder='Enter Your Name' id="name"></input>
