@@ -46,8 +46,8 @@ export const register = async (req, res) => {
 
        
 
-        console.log(process.env.Email_Password) ;
-        console.log(process.env.Email_User) ;
+        // console.log(process.env.Email_Password) ;
+        // console.log(process.env.Email_User) ;
 
         try {
 

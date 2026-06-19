@@ -20,8 +20,8 @@ app.use('/api/auth', authRouter)
 app.listen(port, ()=> {
     console.log(`Hey man, your server running at ${port}`) ;
     //console.log(process.env.MONGO_URL)
-  console.log(process.env.Email_Password) ;
-  console.log(process.env.Email_User) ;
+//   console.log(process.env.Email_Password) ;
+//   console.log(process.env.Email_User) ;
 })
 
 
