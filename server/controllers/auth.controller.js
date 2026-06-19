@@ -7,7 +7,7 @@ import bcrypt from "bcrypt" ;
 import jwt from "jsonwebtoken" ;
 import userModel from "../models/user.model.js";
 import cookie from "cookie-parser" ;
-// import transporter from "../config/nodemailer.js";
+import transporter from "../config/nodemailer.js";
 
 export const register = async (req, res) => {
     const {name, email, password} = req.body ;
@@ -35,21 +35,36 @@ export const register = async (req, res) => {
             maxAge : 7 * 24 *60 * 60 * 1000 ,        
         })   
         
-        // // Add email sender
-        // const mailOptions = {
-        //     from : process.env.SENDER_EMAIL,
-        //     to : email ,
-        //     subject : 'Welcome' ,
-        //     text : `Welcome buddy, Your are now a registered user with Mail ID - ${email}`
-        // }
+        // Add email sender
+        const mailOptions = {
+            from : process.env.Email_User,
+            to :  email ,
+            subject : 'Welcome' ,
+            text : `Welcome buddy, Your are now a registered user with Mail ID - ${email}`
+        }
 
 
-        // transporter.verify((err, success) => {
-        //     if(err) console.error(err) 
-        //     else console.log("SMTP server is running")
-        // })
+       
 
-        // await transporter.sendMail(mailOptions) ;
+        console.log(process.env.Email_Password) ;
+        console.log(process.env.Email_User) ;
+
+        try {
+
+            await transporter.sendMail(mailOptions) ;
+            console.log ("Sent Mail")
+            
+        } catch (error) {
+            console.log("Mail Error : " , error.message)            
+        }
+
+// transporter.sendMail(mailOptions , (error, info) => {
+//     if(error) {
+//         return console.log(`Error occured : `, error) ;
+//     }
+//     console.log(`Email Sent Successfully `) ;
+//     console.log(`Info : `, info.response)
+// }) ;
             
        
 
