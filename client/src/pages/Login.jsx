@@ -4,11 +4,12 @@ import { AppContext } from '../context/AppContext';
 import axios from "axios" ;
 import { toast } from 'react-toastify';
 
+
 const Login = () => {
 
     const Navigate = useNavigate()
 
-    const {backendUrl, setIsLoggedin} = useContext(AppContext)
+    const {backendUrl, setIsLoggedin,getUserData } = useContext(AppContext)
 
     const [state , setState] = useState('Sign-up')
 
@@ -27,6 +28,7 @@ const Login = () => {
 
                if(data.success) {
                 setIsLoggedin(true)
+                getUserData() ;
                 Navigate('/') ;
                }
                else {
@@ -40,6 +42,7 @@ const Login = () => {
 
                if(data.success) {
                 setIsLoggedin(true)
+               getUserData() ;
                 Navigate('/') ;
                }
                else {
@@ -48,7 +51,7 @@ const Login = () => {
             }
             }
         } catch (error) {
-            toast.error(data.message)
+            toast.error(error.message)
         }
     }
 

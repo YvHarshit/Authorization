@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
 
 const Header = () => {
+
+    const {userData} = useContext(AppContext) ;
+
   return (
-    <div className='min-h-screen flex items-center justify-center'>
-    <div >
-
-        <h2 className='flex item-centre gap-2 text-xl sm:text-3xl font-bold'> Welcome Man </h2>
-        <h3 className=''> Hii, This is  a practice project for Authorization </h3>
-        <p>Get Started</p>
-
-    </div>
-
+    <div className='flex items-center justify-center min-h-screen text-center bg-gradient-to-br from-blue-200 to-purple-400'>
+  
+     <div  className='border border-blue-900 rounded-lg px-10 py-5  '>     
+         <h2 className='text-4xl font-bold text-indigo-500 mt-5'> Welcome, {userData ? userData.name :'Developer'} ! </h2>
+        <h2 className='text-xl font-semibold mt-5'> Hey , This is  a practice project for Authorization.. </h2>
+        <h2 className='text-3xl font-semibold mt-5'> Try It</h2>
+     </div>
+  
     </div>
 
 
