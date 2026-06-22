@@ -1,0 +1,21 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
+const Navbar = () => {
+
+    const navigate = useNavigate()
+
+
+
+  return (
+    <div className='w-full  flex justify-between item-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-green-200'>
+        <h3 className='w-28 sm:w-32 text-xl font-bold'> Auth Practice</h3>
+
+        <button onClick={()=> navigate('/login')}
+         className='flex item-centre gap-2 border border-gray-500 rounded-full px-6 py-2 text-gray-800 hover:bg-gray-100 transition-all cursor-pointer'> Login </button>
+        
+    </div>
+  )
+}
+
+export default Navbar

@@ -4,9 +4,15 @@ import App from './App.jsx'
 import Form from './Form.jsx'
 import './index.css'
 
+import {BrowserRouter} from 'react-router-dom'
+import { AppContextProvider } from './context/AppContext.jsx'
+
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-    <Form/>
-  </StrictMode>,
+  <BrowserRouter>
+  <AppContextProvider>
+
+     <App />
+
+  </AppContextProvider>
+  </BrowserRouter>,
 )
