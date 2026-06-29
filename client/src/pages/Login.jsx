@@ -1,3 +1,9 @@
+import {auth} from "../firebase" ;
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+
+
+//==========================================
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
@@ -5,11 +11,33 @@ import axios from "axios" ;
 import { toast } from 'react-toastify';
 
 
+
+
+
 const Login = () => {
 
-    const Navigate = useNavigate()
+const Navigate = useNavigate()
+const {backendUrl, setIsLoggedin,getUserData } = useContext(AppContext)
 
-    const {backendUrl, setIsLoggedin,getUserData } = useContext(AppContext)
+//=================================
+const provider = new GoogleAuthProvider() ;
+
+const googleLogin = async() => {
+    const result = await signInWithPopup(auth, provider) ;
+    const firebaseToken = await result.user.getIdToken() ;
+
+    console.log(firebaseToken) ;
+
+    await axios.post(`${backendUrl}/api/auth/google`,
+        {idToken: firebaseToken}, 
+        {withCredentials: true}
+        
+    ) ;
+}
+
+//=================================
+
+    
 
     const [state , setState] = useState('Sign-up')
 
@@ -42,7 +70,7 @@ const Login = () => {
 
                if(data.success) {
                 setIsLoggedin(true)
-               getUserData() ;
+                  getUserData() ;
                 Navigate('/') ;
                }
                else {
@@ -61,7 +89,7 @@ const Login = () => {
   return (
 
     <>
-    <div className=' h-[50px] bg-gradient-to-br from-purple-4000 to-blue-200'>
+    <div className=' bg-gradient-to-br from-purple-4000 to-blue-200'>
         
 
     <button onClick={()=>Navigate('/')}
@@ -117,6 +145,10 @@ const Login = () => {
                 <span onClick={() => setState('Sign-up')}
                 className='cursor-pointer underline text-blue-400'> Sign-Up Here .</span>
             </p>) } 
+
+            <button onClick={googleLogin}
+            className="w-full my-6 p-3 justify-center bg-slate-600 rounded-md cursor-pointer font-semibold border"
+            > Continue With Google </button>
 
             
 

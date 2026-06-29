@@ -8,6 +8,15 @@ import jwt from "jsonwebtoken" ;
 import userModel from "../models/user.model.js";
 import cookie from "cookie-parser" ;
 import transporter from "../config/nodemailer.js";
+//======================
+import admin from '../config/firebaseAdmin.js'
+
+
+export const googleLogin = async() => {  //////  ==================  Start From Here  ==================//
+
+}
+
+//======================
 
 export const register = async (req, res) => {
     const {name, email, password} = req.body ;
